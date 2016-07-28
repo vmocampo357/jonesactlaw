@@ -931,6 +931,7 @@ function final_results_func($points){ ?>
 <h2>So, How did You Do?</h2>
 <br />
 <p>Rating your claim: Remember that the above points are really only basic guidelines and may not apply to your specific situation. Hopefully the answers got you thinking about your claim and how to best protect yourself moving forward. And with many of the answers above, even if you scored low on the questions, there may be ways to minimize or avoid the challenges to your claim.</p>
+<p>Thanks for using our calculator! You can download <a target="_blank" style="color:blue;" href="http://www.jonesactlaw.com/wp-content/uploads/2016/07/JAL-Rate-Your-Claim-Calculator-Download.pdf">this PDF</a> version for future use.</p>
 <p>&nbsp;</p>
 <a href="javascript:location.reload();" id="start_again">Start Over</a>
 </div>
@@ -950,7 +951,9 @@ function final_results_func($points){ ?>
 </div> 
 <?php
 }
+
 add_shortcode( 'final_results', 'final_results_func' );
+
 function form_section_text(){ ?>
 <span class="heading"> REACH OUT TO US </span> <span class="color">  Fill out the quick contact form below to have your questions answered by the team at Jones Act Law.com </span> 
 <?php
