@@ -1,0 +1,32 @@
+.avtr_custom {
+  border:1px solid #ccc;
+  box-shadow: 1px 1px 2px rgba(0,0,0,0.35);
+  padding: 0;
+}
+.avtr_custom .avtr-container {
+  width: 66.666666%;
+  float: left;
+}
+.avtr_custom .avtr-container .image {
+  margin:0;
+  padding:0;
+  max-width:33.33333%;
+  float: left;
+}
+.avtr_custom .avtr-container .image img {
+  margin:0;
+  padding:0;
+  width: 100%;
+  height: auto;
+}
+.avtr_custom .avtr-container .name {
+  float:left;
+  max-width:66.66666%;
+  padding: .5em;
+  font-size: 1em;
+}
+.social-container {
+  width:33.333333%;
+  float: left;
+  border-left:1px solid #ccc;
+}

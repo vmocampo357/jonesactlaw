@@ -1,0 +1,459 @@
+<?php
+
+/*
+
+
+
+Template Name: Claim Work
+
+
+
+*/
+
+?>
+
+<!--Header Start-->
+
+<?php
+
+get_header('pages');
+
+?>
+
+<!--Header End--> 
+
+    <!--Inner Page Title-->
+
+    <div class="innerpage_tile">
+
+    	<?php the_field('understanding_claim'); ?>
+
+    </div>
+
+    <!--Inner Page Title Ends-->
+
+    
+
+    <!--Page Content Start-->
+
+    <div class="cont">
+
+    	<div id="inner_wraper">
+
+        <!--Bredcrums Start-->
+
+            <?php 
+
+            if ( function_exists('yoast_breadcrumb') ) {
+
+                yoast_breadcrumb('<div id="breadcrums">','</div>');
+
+            }
+
+            ?> 
+
+        <!--Bredcrums End-->
+
+            
+
+            <!--Upcoming Webinars-->
+
+            <div class="section">
+
+            	
+
+                	<div class="info_wraper">
+
+                    <?php if( have_posts() ): while( have_posts() ): the_post(); ?>
+
+                    <?php the_post_thumbnail( 'full', array( 'class' => 'tximg' ) ); 
+
+
+
+						the_content(); 
+
+                        
+
+					  endwhile; endif; ?>
+
+                                                            
+
+                    </div>                               
+
+                <div class="clear"></div>
+
+            </div>            
+
+            <!--On Demand Webinars-->            
+
+        </div>
+
+    </div>
+
+    <!--Page Content End-->
+
+    
+
+    <!---->
+
+    <div id="freebook_wrap">
+
+    	<div class="cont">
+
+        	<div class="articleswrap">
+
+        	<div class="col-4">
+
+           	  <div class="articlebox">
+
+               	<h4><img src="<?php echo site_url(); ?>/wp-content/themes/brazil-wp/images/feat_img1.png" /> <strong>Articles</strong></h4>
+
+                    
+
+                <ul class="articleList">
+
+                 <?php
+					 if(is_page(6188))
+					  {
+						  $r = new WP_Query( array(
+
+                           'posts_per_page' => 3,
+
+                           'no_found_rows' => true,
+
+                           'post_status' => 'publish',
+						  
+						   'category_name'=>'getting-medical-treatment',
+
+                           'post_type' => array('library','post'),
+						   
+						   'post__in' => array( 5372,4450,5355 ), 
+
+                           'ignore_sticky_posts' => true,
+
+                           'orderby' => 'post_date',
+
+                           'order' => 'DESC',
+
+                        ) ); 
+					  }
+					  elseif(is_page(6194))
+					  {
+						   $r = new WP_Query( array(
+
+                           'posts_per_page' => 3,
+
+                           'no_found_rows' => true,
+
+                           'post_status' => 'publish',
+						  
+						   'cat'=> '102,103,105',
+
+                           'post_type' => 'post',
+						   
+						   'post__in' => array( 4314,3903,4349 ), 
+
+                           'ignore_sticky_posts' => true,
+
+                           'orderby' => 'post_date',
+
+                           'order' => 'ASC',
+
+                        ) );
+					   }
+					  else{
+                        $r = new WP_Query( array(
+
+                           'posts_per_page' => 3,
+
+                           'no_found_rows' => true,
+
+                           'post_status' => 'publish',
+						  
+						   'category_name'=>'how-your-claim-works',
+
+                           'post_type' => 'library',
+						   
+						   'post__in' => array( 5358,5359,5361 ), 
+
+                           'ignore_sticky_posts' => true,
+
+                           'orderby' => 'post_date',
+
+                           'order' => 'DESC',
+
+                        ) );
+					  }
+
+                        if ($r->have_posts()) :
+
+                        while ( $r->have_posts() ) : $r->the_post(); ?>
+
+                   	  <li>
+
+                       	  <?php the_post_thumbnail(array(55, 55)); ?>
+
+                       	  <p><a href="<?php the_permalink();?>"><?php the_title(); ?></a></p>
+
+                          <div class="clear"></div>
+
+                      </li>
+
+                       <?php endwhile;
+
+						wp_reset_postdata();
+
+                        endif; ?>                         
+
+                </ul>
+
+                    
+
+                </div>
+
+            </div>
+
+            
+
+            <div class="col-4">
+
+            	<div class="articlebox">
+
+                	<h4><img src="<?php echo site_url(); ?>/wp-content/themes/brazil-wp/images/feat_img2.png" /> <strong>Videos</strong></h4>
+
+                    
+
+                    <ul class="articleList">
+
+                    <?php
+                      if(is_page(6188))
+					  {
+						  $r = new WP_Query( array(
+
+                           'posts_per_page' => 3,
+
+                           'no_found_rows' => true,
+
+                           'post_status' => 'publish',
+
+                           'post_type' => 'video',
+						   
+						   'post__in' => array( 5154,5159,5161 ), 
+
+                           'ignore_sticky_posts' => true,
+
+                           'orderby' => 'post_date',
+
+                           'order' => 'ASC',
+
+                        ) );
+					   }
+					  elseif(is_page(6194))
+					  {
+						  $r = new WP_Query( array(
+
+                           'posts_per_page' => 3,
+
+                           'no_found_rows' => true,
+
+                           'post_status' => 'publish',
+
+                           'post_type' => 'video',
+
+                           'ignore_sticky_posts' => true,
+
+                           'orderby' => 'post_date',
+
+                           'order' => 'DESC',
+
+                        ) );
+					  }
+					  else{
+                        $r = new WP_Query( array(
+
+                           'posts_per_page' => 3,
+
+                           'no_found_rows' => true,
+
+                           'post_status' => 'publish',
+
+                           'post_type' => 'video',
+
+                           'ignore_sticky_posts' => true,
+
+                           'orderby' => 'post_date',
+
+                           'order' => 'DESC',
+
+                        ) );
+					  }
+                        if ($r->have_posts()) :
+
+                        while ( $r->have_posts() ) : $r->the_post(); ?>
+
+                    	<li>
+
+                        	 <?php the_post_thumbnail(array(55, 55)); ?>
+
+                       	  <p><a href="<?php the_permalink();?>"><?php the_title(); ?></a></p>
+
+                            <div class="clear"></div>
+
+                      </li>
+
+                         <?php endwhile;
+
+						wp_reset_postdata();
+
+                        endif; ?>                        
+
+                    </ul>
+
+                    
+
+                </div>
+
+            </div>
+
+            
+
+            <div class="col-4">
+
+           	  <div class="articlebox">
+
+               	<h4><img src="<?php echo site_url(); ?>/wp-content/themes/brazil-wp/images/feat_img3.png" /> <strong>Free Resources</strong></h4>
+
+                    
+
+                  <ul class="articleList">
+
+                  <?php
+						if(is_page(6188)){
+                        $r = new WP_Query( array(
+
+                           'posts_per_page' => 3,
+
+                           'no_found_rows' => true,
+
+                           'post_status' => 'publish',
+
+                           'post_type' => 'sign-up',
+						   
+						   'post__in' => array( 5573,5571,5569 ), 
+
+                           'ignore_sticky_posts' => true,
+
+                           'orderby' => 'post_date',
+
+                           'order' => 'DESC',
+
+                        ) ); 
+						
+						}
+						elseif(is_page(6194))
+						{
+                        $r = new WP_Query( array(
+
+                           'posts_per_page' => 3,
+
+                           'no_found_rows' => true,
+
+                           'post_status' => 'publish',
+
+                           'post_type' => 'sign-up',
+						   
+						   'post__in' => array( 5585,5580,5578 ), 
+
+                           'ignore_sticky_posts' => true,
+
+                           'orderby' => 'post_date',
+
+                           'order' => 'DESC',
+
+                        ) ); 
+						
+						}
+						
+						else
+						{
+							$r = new WP_Query( array(
+
+                           'posts_per_page' => 3,
+
+                           'no_found_rows' => true,
+
+                           'post_status' => 'publish',
+
+                           'post_type' => 'sign-up',
+						   
+						   'post__in' => array( 5585,5580,5578 ), 
+
+                           'ignore_sticky_posts' => true,
+
+                           'orderby' => 'post_date',
+
+                           'order' => 'DESC',
+
+                        ) ); 
+						
+						
+						}
+												
+
+                       if ($r->have_posts()) : while ( $r->have_posts() ) : $r->the_post(); ?>
+
+                   	  <li>
+
+                       	  <?php the_post_thumbnail(array(55, 55)); ?>
+
+                       	 <p><a href="<?php the_permalink();?>"><?php the_title(); ?></a></p>
+
+                          <div class="clear"></div>
+
+                      </li>                       
+
+                      <?php endwhile;
+
+						wp_reset_postdata();
+
+                        endif; ?>                          
+
+                  </ul>
+
+                    
+
+                </div>
+
+            </div>
+
+            
+
+            <div class="clear"></div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    
+
+    <!--Concerns About-->
+
+    <div id="concern_wrap">
+
+    	<?php the_field('rate_your_claim'); ?>
+
+    </div>
+
+    <!--Concerns About--> 
+
+  
+
+  <!--Footer-->
+
+<?php get_footer(); ?>
+
+  <!--Footer End-->
+
+</div>

@@ -1,0 +1,512 @@
+<?php
+
+
+
+/***************************************/
+
+/*			Globalization $woptions
+
+/***************************************/
+
+GLOBAL $webnus_options;
+
+
+
+include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
+
+?><!DOCTYPE html>
+
+<!--[if (gte IE 9)|!(IE)]><!--><html lang="en"> <!--<![endif]-->
+
+<head>
+
+<!-- Basic Page Needs ================================================== -->
+
+	<meta charset="<?php bloginfo('charset');?>">
+
+	<title><?php
+
+	
+
+	/***************************************/
+
+	/*			Title Generation Process
+
+	/***************************************/
+
+	if(is_plugin_active('all-in-one-seo-pack/all_in_one_seo_pack.php'))
+
+	{		
+
+		wp_title( '|', true, 'right' );			
+
+	}elseif(is_plugin_active('wordpress-seo/wp-seo.php'))
+
+	{		
+
+		wp_title( '|', true, 'right' );		
+
+	}else{		
+
+		global $page, $paged;		
+
+		wp_title( '|', true, 'right' );		
+
+		bloginfo( 'name' );		
+
+		$site_description = get_bloginfo( 'description', 'display' );		
+
+		if ( $site_description && ( is_home() || is_front_page() ) )
+
+			echo " | $site_description";
+
+		if ( $paged >= 2 || $page >= 2 )
+
+			echo ' | ' . sprintf( __( 'Page' ,WEBNUS_TEXT_DOMAIN) . ' %s', max( $paged, $page ) );
+
+	}
+
+	/***************************************/
+
+	/*			End Title Generation Process
+
+	/***************************************/		
+
+?></title>
+
+<?php 
+
+
+
+if(is_plugin_inactive('all-in-one-seo-pack/all_in_one_seo_pack.php') && is_plugin_inactive('wordpress-seo/wp-seo.php'))
+
+{
+
+?>
+
+	<meta name="description" content="<?php
+
+	/***************************************/
+
+	/*			Description Meta Tag Generator
+
+	/***************************************/				
+
+		global $page_seo_meta;		
+
+		$seo_meta = !empty($page_seo_meta)?$page_seo_meta->the_meta():null;
+
+		if( !empty( $seo_meta ) && !empty( $seo_meta['webnus_seo_options'][0]['seo_desc'] ) )
+
+		{				
+
+			echo($seo_meta['webnus_seo_options'][0]['seo_desc']);			
+
+		}else{				
+
+			if ( is_single() ) {			
+
+				single_post_title('', true); 				
+
+			} else {			
+
+				bloginfo('name'); echo " - "; bloginfo('description');				
+
+			}						
+
+		}		
+
+/***************************************/
+
+/*			End Description Meta Tag Generator
+
+/***************************************/
+
+?>">
+
+<meta name="keywords" content="<?php
+
+
+
+/***************************************/
+
+/*			Keywords Meta Tag Generator
+
+/***************************************/
+
+	global $page_seo_meta;	
+
+	$seo_meta = !empty($page_seo_meta)?$page_seo_meta->the_meta():null;	
+
+	if( !empty($seo_meta) && !empty($seo_meta['webnus_seo_options'][0]['seo_keyword']) )
+
+	{	
+
+		echo($seo_meta['webnus_seo_options'][0]['seo_keyword']);		
+
+	}
+
+
+
+/***************************************/
+
+/*			End Keywords Meta Tag Generator
+
+/***************************************/
+
+
+
+?>" />
+
+<?php } //end of all in one seo installation check ?>
+
+<meta name="author" content="<?php 
+
+
+
+if( !is_single() )
+
+	echo get_bloginfo('name');
+
+else {
+
+	global $post;	
+
+	if(isset($post) && is_object($post))
+
+	{			
+
+		$flname = get_the_author_meta('first_name',$post->post_author). ' ' . get_the_author_meta('last_name',$post->post_author);
+
+		$flname = trim($flname);
+
+		if (empty($flname)) 
+
+			the_author_meta('display_name',$post->post_author);
+
+		else 
+
+			echo $flname;		
+
+	}	
+
+}
+
+?>">
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+<!-- Mobile Specific Metas ================================================== -->
+
+<?php
+
+
+
+$responsive = $webnus_options->webnus_enable_responsive();
+
+
+
+if(1 == $responsive){
+
+?>
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+<?php } else { ?>
+
+<meta name="viewport" content="width=1200,user-scalable=no">
+
+<?php } ?>
+
+<?php if($webnus_options->webnus_fav_icon()): ?>
+
+<link rel="shortcut icon" href="<?php echo $webnus_options->webnus_fav_icon(); ?>">
+
+<?php else: ?>
+
+<link rel="shortcut icon" href="<?php echo get_template_directory_uri(); ?>/images/favicon.ico">
+
+<?php endif; ?>
+
+   
+
+ <!-- accests ================================================== -->
+
+ 
+
+<link type="text/css" rel="stylesheet" media="all" href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,300,700" />
+
+  <link type="text/css" rel="stylesheet" media="all" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" />
+
+  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+  <script type="text/javascript">
+
+(function () {
+
+  if (window.jQuery === undefined) {
+
+    document.write('<script type="text/javascript" src="<?php bloginfo('template_url'); ?>/accests/js/jquery-1.11.3.min.js"><\/script>');
+
+  }
+
+}());
+
+  </script>
+
+  
+
+  <script type="text/javascript" src="<?php bloginfo('template_url'); ?>/accests/js/jquery.cycle2.min.js"></script>
+
+  <script type="text/javascript" src="<?php bloginfo('template_url'); ?>/accests/js/main-header.js"></script>
+  
+  <script>(function(ng,a,g,e){var l=document.createElement(g);l.async=1;l.src =(ng+e);var c=a.getElementsByTagName(g)[0];c.parentNode.insertBefore(l,c);})("https://messenger.ngageics.com/ilnksrvr.aspx?websiteid=",document,"script","191-199-229-196-233-126-113-24");</script>
+
+
+<style type="text/css">#nGageLH {margin: 0 auto 10px;text-align: center;visibility: hidden;}</style>
+<?php if(is_page(3401)){ ?>
+<script> 
+    $( document ).ready(function() {
+        $('.testimg').parents().eq(5).addClass("call-to-action-section margin-top-30 full-row");
+    });
+</script>
+<?php } ?>
+
+<script type="text/javascript">
+$(window).load(function(){
+	$('#left_area_img1').click(function(){
+		$("#left").animate({right:0});
+		$('#left_area_img1').css('display','none');
+		$('#left_area_img2').css('display','block');
+		//jQuery('#left_area_img2').css('margin-left', -48);
+		//jQuery("#left_area_img2").animate({'margin-left':-48});
+		//jQuery('.area_left').css('width', 261);
+		//jQuery('.left_area').css('width', 261); 
+	});
+	$('#left_area_img2').click(function(){
+		$("#left").animate({right:-407});
+		$('#left_area_img1').css('display','block');
+		$('#left_area_img2').css('display','none');
+		//jQuery('.left_area').css('width', 49);
+		//jQuery('#left_area_img1').css('margin-left', 0);
+		//jQuery('#left_area_img1').animate({'margin-left': 0});
+	});
+});
+</script>
+
+
+
+<script>
+ 
+ 
+    
+    
+ (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+ (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+ m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+ })(window,document,'script','../www.google-analytics.com/analytics.js'/*tpa=http://www.google-analytics.com/analytics.js*/,'ga');
+
+ 
+ ga('create', 'UA-1399663-116', 'auto', {'name':'ua1', 'allowLinker':'true'});
+ ga('ua1.require', 'displayfeatures');
+ ga('ua1.require', 'linkid');
+ ga('http://www.jonesactlaw.com/ua1.send', 'pageview');
+ 
+ ga('create', 'UA-38841917-1', 'auto', {'name':'ua2', 'allowLinker':'true'});
+ ga('ua2.require', 'displayfeatures');
+ ga('ua2.require', 'linkid');
+ ga('http://www.jonesactlaw.com/ua2.send', 'pageview');
+ 
+ ga('create', 'UA-45899426-1', 'auto', {'name':'ua7', 'cookieDomain':'http://www.jonesactlaw.com/www.jonesactlaw.com', 'allowLinker':'true'});
+ ga('ua7.require', 'displayfeatures');
+ ga('ua7.require', 'linkid');
+ ga('http://www.jonesactlaw.com/ua7.send', 'pageview');
+ 
+ 
+ 
+
+ var fwmEvent=function(e){var r=['ua1','ua2','ua7'],a=1==arguments.length?arguments[0].split(","):Array.prototype.slice.call(arguments);a.forEach(function(e,r){a[r]=e.replace(/'/g,"").trim()});for(var n=0;n<r.length;n++){var t=[r[n]+".send","event"],l=$.merge(t,a);ga.apply(null,l)}};
+
+ 
+</script>
+
+
+
+
+<?php wp_head();  ?>
+</head>
+
+<!-- CSS + JS ================================================== -->
+
+   <link type="text/css" rel="stylesheet" media="all" href="<?php echo get_stylesheet_directory_uri(); ?>/accests/css/page-header.css" />  
+
+  
+
+<?php if (is_page_template( array('page-about-us.php','page-case-results.php','page-sign-up.php','page-thank-you.php','page-reports.php','page-claim-work.php','page-our-team.php','faq.php','testimonials.php','template-claim-calculator.php')) || is_singular(array('attorneys','sign-up')) || is_page(3391)){ ?>
+
+<link type="text/css" rel="stylesheet" media="all" href="<?php echo get_stylesheet_directory_uri(); ?>/accests/css/main-templates.css" />
+
+<?php }else{ ?>
+
+<link type="text/css" rel="stylesheet" media="all" href="<?php echo get_stylesheet_directory_uri(); ?>/accests/css/main.css" />
+
+<?php } ?>
+
+ 
+
+  <?php
+
+/*
+
+ * Codes for transparent header
+
+ * 
+
+*/
+
+
+
+GLOBAL $webnus_page_options_meta;
+
+$transparent_header = '';
+
+if(!is_search())
+
+{
+
+$transparent_header_meta = isset($webnus_page_options_meta)?$webnus_page_options_meta->the_meta():null;
+
+$transparent_header =(isset($transparent_header_meta) && is_array($transparent_header_meta) && isset($transparent_header_meta['webnus_page_options'][0]['webnus_transparent_header']))?$transparent_header_meta['webnus_page_options'][0]['webnus_transparent_header']:null;
+
+}
+
+$transparent_header_class = (!empty($transparent_header))?'transparent-header-w':'';
+
+?>	
+
+<body <?php body_class('default-header '. $transparent_header_class); ?>>
+
+
+
+<!--<?php $offer_slideout	=	get_field('offer_slideout'); ?>
+<?php if ($offer_slideout) { ?>
+<div class="area_left" id="left">
+	<div class="left_area">
+	<img id="left_area_img1" src="<?php echo site_url();?>/wp-content/uploads/2016/02/button-out.jpg" alt="Free Consultation" width="49" height="240"  />
+    <img id="left_area_img2" src="<?php echo site_url();?>/wp-content/uploads/2016/02/button-in.jpg" alt="Free Consultation" width="49" height="240" style="display:none;"/>
+	</div>
+    <div class="border"></div>
+    <div class="inner_slideout">
+        <h3> <?php //if (get_field('slideout_heading')) { echo get_field('slideout_heading'); } else { ?> Are You Asking The Right Questions About your Offshore Injury? <?php //} ?></h3>
+        <?php $slideout_image	=	get_field('slideout_image');?>
+        <p><img src="<?php //if ($slideout_image) { echo $slideout_image['url']; } else { ?>http://www.jonesactlaw.com/wp-content/uploads/2016/02/maritime-book-sm.jpg<?php } ?>" alt="<?php //if ($slideout_image['alt']) { echo $slideout_image['alt']; } else { echo 'Maritime Book'; //} ?>" class="alignright" /><?php //if (get_field('slideout_paragraph')) { echo get_field('slideout_paragraph'); } else { ?>If you would like as much information as possible. Please order our FREE book understanding your offshore injury audiobook. We will this audiobook to you <strong>free of cost</strong> to help you better understand maritime injury law.<?php //} ?></p>
+        <div class="span-head">Download now, for a limited time!</div>
+        <?php //echo do_shortcode('[gravityform id=5 title=false description=false tabindex=99]'); ?>
+    </div>
+</div>
+<?php //} ?>-->
+
+<!--<div class="area_left" id="left">
+	<div class="left_area">
+	<img id="left_area_img1" src="http://www.jonesactlaw.com/wp-content/uploads/2016/02/button-out.jpg" alt="Free Consultation" width="49" height="240"  />
+    <img id="left_area_img2" src="http://www.jonesactlaw.com/wp-content/uploads/2016/02/button-in.jpg" alt="Free Consultation" width="49" height="240" style="display:none;"/>
+	</div>
+    <div class="border"></div>
+    <?php
+    /*if( have_rows('offers_for_slideout','option') ):
+		while ( have_rows('offers_for_slideout','option') ) : the_row();
+			the_sub_field('slideout_offer_code');
+		endwhile;
+	endif;*/
+	?>
+</div>-->
+
+
+
+
+<a href="javascript:StartNgageChat();"><div class="liveChatFloatingButton">LIVE CHAT</div></a>
+ <div id="main_cont">
+
+ <!--Header Start-->
+
+    <div id="innerEs_header">
+
+    <div id="header_menu_contE">
+
+      <div id="header_menu_cont2E" class="contE">
+
+        <div class="logo-inner"></div>
+
+        <div class="booktopbx">
+
+        	<div class="col-6">
+
+        		<div class="bookwrap"> <img src="<?php bloginfo('template_url');?>/accests/images/book-icon.png" /> </div>
+
+        	</div>
+
+            <div class="col-6">
+
+            <div class="copybox">
+
+          <div class="title">Download Your Free Copy Now</div>
+
+          <div id="download_form">
+
+            <form>
+
+              <input type="text" name="" placeholder="Your Email Address" />
+
+              <input type="submit" value="GO" />
+
+            </form>
+
+          </div>
+
+        </div>
+
+        	</div>            
+
+            <div class="clear"></div>
+
+        </div>
+
+        <div class="clear"></div>
+
+      </div>
+
+      <div id="innermenu_wraperE">
+
+        <div class="contE"> <a href="#" class="icon"></a>
+
+          <div id="header_menu_cont3E">
+
+                         <?php
+
+						 	$backup_owp = $wp_query;
+
+							$wp_query = NULL;
+
+							$wp_query = new WP_Query(array('post_type' => 'post'));
+
+							 wp_nav_menu( array( 'theme_location' => 'header-menu', 'container'  => false, 'items_wrap' => '<ul>'.get_search_form().'%3$s</ul>' ) ); 
+
+							 $wp_query = $backup_owp;
+
+						 ?>
+
+                <div class="clear"></div>
+
+            <div class="clear"></div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+     <!--Header End-->
