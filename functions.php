@@ -931,7 +931,27 @@ function final_results_func($points){ ?>
 <h2>So, How did You Do?</h2>
 <br />
 <p>Rating your claim: Remember that the above points are really only basic guidelines and may not apply to your specific situation. Hopefully the answers got you thinking about your claim and how to best protect yourself moving forward. And with many of the answers above, even if you scored low on the questions, there may be ways to minimize or avoid the challenges to your claim.</p>
-<p>Thanks for using our calculator! You can download <a target="_blank" style="color:blue;" href="http://www.jonesactlaw.com/wp-content/uploads/2016/07/JAL-Rate-Your-Claim-Calculator-Download.pdf">this PDF</a> version for future use.</p>
+<!--<p>Thanks for using our calculator! You can download <a target="_blank" style="color:blue;" href="http://www.jonesactlaw.com/wp-content/uploads/2016/07/JAL-Rate-Your-Claim-Calculator-Download.pdf">this PDF</a> version for future use.</p>!-->
+<p>Thanks for using our calculator! Submit the form below to get a free, PDF version of the calculator!</p>
+<script type="text/javascript" src="https://tschedule.infusionsoft.com/app/form/iframe/ea47e1967bb06c43965f4ca46a743a13"></script>
+<form accept-charset="UTF-8" action="https://tschedule.infusionsoft.com/app/form/process/ea47e1967bb06c43965f4ca46a743a13" class="infusion-form" method="POST">
+    <input name="inf_form_xid" type="hidden" value="ea47e1967bb06c43965f4ca46a743a13" />
+    <input name="inf_form_name" type="hidden" value="Rate Claim Webform" />
+    <input name="infusionsoft_version" type="hidden" value="1.55.0.65" />
+    <div class="infusion-field">
+        <label for="inf_field_FirstName">First Name *</label>
+        <input class="infusion-field-input-container" id="inf_field_FirstName" name="inf_field_FirstName" type="text" />
+    </div>
+    <div class="infusion-field">
+        <label for="inf_field_Email">Email *</label>
+        <input class="infusion-field-input-container" id="inf_field_Email" name="inf_field_Email" type="text" />
+    </div>
+    <div class="infusion-submit">
+        <input type="submit" value="Submit" />
+    </div>
+</form>
+<script type="text/javascript" src="https://tschedule.infusionsoft.com/app/webTracking/getTrackingCode?trackingId=e370abe00d8ff5e4b9a050d36c0821cd"></script>
+
 <p>&nbsp;</p>
 <a href="javascript:location.reload();" id="start_again">Start Over</a>
 </div>
